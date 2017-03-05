@@ -78,7 +78,7 @@ module cpu(
     always @(posedge CLK)
             begin
                 if(branch&predict_EX) predict_success=predict_success+1;
-                else if (branch&~predict_EX) predict_fail=predict_fail+1;
+                else if ((branch&~predict_EX)|(~branch&predict_EX)) predict_fail=predict_fail+1;
             end
     
     ////////////////////predict///////////////////////////////
